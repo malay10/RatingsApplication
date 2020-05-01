@@ -69,6 +69,9 @@ ratingControl.addEventListener('blur', (e) => {
     ratings[product] = ratingControl.value;
     // console.log(ratings[product]);
     updateRating(product);
+    // console.log(ratingControl.value);
+    let starValue = (Math.round(ratingControl.value * 100) / 5);
+    reviewStar.style.width = `${starValue}%`;
 });
 
 reviewForm.addEventListener('submit', (e) => {
@@ -100,4 +103,32 @@ reviewForm.addEventListener('submit', (e) => {
 
     //Hide the form again
     reviewForm.style.display = "none";
-})
+});
+
+const outerStars = document.querySelector('#review-outer-stars')
+const reviewStar = document.querySelector('#review-stars');
+console.log(reviewStar);
+const slider = document.querySelector('#slider');
+
+const updateStars = (starPercentageRounded) => {
+    const rounded = (starPercentageRounded * 5) / 100;
+    ratingControl.value = rounded;
+    reviewStar.style.width = `${starPercentageRounded}%`;
+}
+outerStars.addEventListener('mousemove', (e) => {
+    const starPercentage = (e.offsetX * 5 / 90) / 5 * 100;
+    console.log(starPercentage);
+
+    //Round to nearest 10
+    const starPercentageRounded = `${Math.round(starPercentage / 10) * 10}`;
+    // console.log(starPercentageRounded);
+
+    reviewStar.style.width = `${starPercentageRounded}%`;
+    outerStars.addEventListener('click', (e) => {
+        updateStars(starPercentageRounded);
+    });
+
+    outerStars.addEventListener('mouseleave', () => {
+        updateStars(starPercentageRounded);
+    });
+});
