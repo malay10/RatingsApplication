@@ -2,13 +2,88 @@
 <html lang="en">
 
 <head>
-    <meta charset="UTF-8">
-    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <!-- <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0"> -->
     <title>Ratings</title>
+    <script src="https://kit.fontawesome.com/6baa5f0ecb.js" crossorigin="anonymous"></script>
+    <link rel="stylesheet" href="https://maxcdn.bootstrapcdn.com/bootstrap/4.0.0/css/bootstrap.min.css" integrity="sha384-Gn5384xqQ1aoWXA+058RXPxPg6fy4IWvTNh0E263XmFcJlSAwiGgFAW/dAiS6JXm" crossorigin="anonymous">
+    <script src="https://maxcdn.bootstrapcdn.com/bootstrap/4.0.0/js/bootstrap.min.js" integrity="sha384-JZR6Spejh4U02d8jOt6vLEHfe/JQGiRRSQQxSfFWpi1MquVdAyjUar5+76PVCmYl" crossorigin="anonymous"></script>
     <link rel="stylesheet" href="./css/styles.css">
+
 </head>
 
 <body>
+    <div class="container mt-5">
+        <div class="form-group">
+            <select id="product-select" class="form-control custom-select">
+            <option value="0" disabled selected>Select Product</option>
+            <option value="sony">Sony 4K TV</option>
+            <option value="samsung">Samsung 4K TV</option>
+            <option value="vizio">Vizio 4K TV</option>
+            <option value="phillips">Phillips 4K TV</option>
+            <option value="LG">LG 4K TV</option>
+        </select>
+        </div>
+
+        <div class="form-group">
+            <input type="number" class="form-control" id="rating-control" step="0.1" max="5" min="1" placeholder="1-5" disabled>
+        </div>
+        <table class="table table-stripped">
+            <thead>
+                <tr>
+                    <th>4K Television</th>
+                    <th>Rating</th>
+                </tr>
+            </thead>
+            <tbody>
+                <tr class="sony">
+                    <td>Sony 4K TV</td>
+                    <td>
+                        <div class="stars-outer">
+                            <div class="stars-inner"></div>
+                        </div>
+                        <span class="number-rating"></span>
+                    </td>
+                </tr>
+                <tr class="samsung">
+                    <td>Samsung 4K TV</td>
+                    <td>
+                        <div class="stars-outer">
+                            <div class="stars-inner"></div>
+                        </div>
+                        <span class="number-rating"></span>
+                    </td>
+                </tr>
+                <tr class="vizio">
+                    <td>Vizio 4K TV</td>
+                    <td>
+                        <div class="stars-outer">
+                            <div class="stars-inner"></div>
+                        </div>
+                        <span class="number-rating"></span>
+                    </td>
+                </tr>
+                <tr class="phillips">
+                    <td>Phillips 4K TV</td>
+                    <td>
+                        <div class="stars-outer">
+                            <div class="stars-inner"></div>
+                        </div>
+                        <span class="number-rating"></span>
+                    </td>
+                </tr>
+                <tr class="LG">
+                    <td>LG 4K TV</td>
+                    <td>
+                        <div class="stars-outer">
+                            <div class="stars-inner"></div>
+                        </div>
+                        <span class="number-rating"></span>
+                    </td>
+                </tr>
+            </tbody>
+        </table>
+    </div>
 
     <script src="./js/main.js"></script>
 </body>
