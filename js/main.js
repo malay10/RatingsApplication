@@ -81,7 +81,7 @@ reviewForm.addEventListener('submit', (e) => {
     const h4 = document.createElement('h4');
     const innerDiv = document.createElement('div');
     const stars = document.createElement('p');
-    let review = document.createElement('p');
+    let reviewContent = document.createElement('p');
 
     //Update the properties
     div.classList.add('sample-review');
@@ -90,19 +90,18 @@ reviewForm.addEventListener('submit', (e) => {
     const productValue = productSelect.options[productSelect.selectedIndex];
     h4.appendChild(document.createTextNode(productValue.text));
     stars.textContent = ratings[productValue.value];
-    //had to read again not sure why
-    let rev = document.getElementById('review').value;
-    review.textContent = rev;
+    reviewContent.textContent = review.value;
 
     //Display the review
     div.appendChild(h4);
     innerDiv.appendChild(stars);
-    innerDiv.appendChild(review);
+    innerDiv.appendChild(reviewContent);
     div.appendChild(innerDiv);
     displayReviews.appendChild(div);
 
     //Hide the form again
     reviewForm.style.display = "none";
+    review.value = "";
 });
 
 const outerStars = document.querySelector('#review-outer-stars')
@@ -116,8 +115,9 @@ const updateStars = (starPercentageRounded) => {
     reviewStar.style.width = `${starPercentageRounded}%`;
 }
 outerStars.addEventListener('mousemove', (e) => {
-    const starPercentage = (e.offsetX * 5 / 90) / 5 * 100;
-    console.log(starPercentage);
+    //offset was going from 0 to 90.. and 180when changed the size..
+    //console.log(e.offsetX + ' ' + e.clientX);
+    const starPercentage = (e.offsetX * 5 / 180) / 5 * 100;
 
     //Round to nearest 10
     const starPercentageRounded = `${Math.round(starPercentage / 10) * 10}`;
