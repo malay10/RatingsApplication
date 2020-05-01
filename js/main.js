@@ -32,21 +32,25 @@ const getRatings = () => {
     }
 }
 
-
-
 //Run get ratings when DOM loads;
 document.addEventListener('DOMContentLoaded', getRatings);
 
 //Form Select
 const productSelect = document.getElementById('product-select');
+const reviewForm = document.getElementById('review-form');
 const ratingControl = document.getElementById('rating-control');
+const review = document.querySelector('#review');
+let displayReviews = document.querySelector('#display-reviews');
 let product;
 
+//Think about if user wants to submit 2 reviews for same prodcut, not likely but ...
 productSelect.addEventListener('change', (e) => {
     product = e.target.value;
-    // console.log(product);
     //Enable the rating control
+    reviewForm.style.display = 'block'
+        //can be removed
     ratingControl.disabled = false;
+    review.disabled = false;
     ratingControl.value = ratings[product];
 });
 
@@ -55,7 +59,7 @@ ratingControl.addEventListener('blur', (e) => {
     const rating = e.target.value;
 
     //Validate rating is 5 or less 
-    if (rating > 5 || rating < 1) {
+    if (rating > maxStars || rating < 1) {
         alert('Please rate from 1-5');
         ratingControl.value = '';
         return;
@@ -66,3 +70,34 @@ ratingControl.addEventListener('blur', (e) => {
     // console.log(ratings[product]);
     updateRating(product);
 });
+
+reviewForm.addEventListener('submit', (e) => {
+    e.preventDefault();
+    //Make necessary elements to store.
+    const div = document.createElement('div');
+    const h4 = document.createElement('h4');
+    const innerDiv = document.createElement('div');
+    const stars = document.createElement('p');
+    let review = document.createElement('p');
+
+    //Update the properties
+    div.classList.add('sample-review');
+    div.classList.add('mb-10');
+    innerDiv.classList.add('content');
+    const productValue = productSelect.options[productSelect.selectedIndex];
+    h4.appendChild(document.createTextNode(productValue.text));
+    stars.textContent = ratings[productValue.value];
+    //had to read again not sure why
+    let rev = document.getElementById('review').value;
+    review.textContent = rev;
+
+    //Display the review
+    div.appendChild(h4);
+    innerDiv.appendChild(stars);
+    innerDiv.appendChild(review);
+    div.appendChild(innerDiv);
+    displayReviews.appendChild(div);
+
+    //Hide the form again
+    reviewForm.style.display = "none";
+})
