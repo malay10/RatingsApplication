@@ -58,3 +58,7 @@ body {
     color: #f8ce0b;
     max-width: 100%;
 }
+
+.hide {
+    display: none;
+}
